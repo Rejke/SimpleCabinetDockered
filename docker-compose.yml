@@ -1,0 +1,46 @@
+services:
+    gravitlauncher:
+        build:
+            context: .
+            dockerfile: Dockerfile.launcher
+        restart: always
+        stdin_open: true
+        tty: true
+        volumes:
+        - launcher:/app/data
+        environment:
+            ADDRESS: "LAUNCHSERVER_ADDRESS_PLACEHOLDER"
+            PROJECTNAME: "GravitLauncher"
+    simplecabinet:
+        build:
+            context: .
+            dockerfile: Dockerfile.simplecabinet
+        restart: always
+        stdin_open: true
+        tty: true
+        volumes:
+        - assets:/app/assets
+    postgres:
+        image: postgres:16
+        environment:
+            POSTGRES_DB: "simplecabinet"
+            POSTGRES_USER: "simplecabinet"
+            POSTGRES_PASSWORD: "yourpassword"
+        volumes:
+            - postgres-database:/docker-entrypoint-initdb.d
+    nginx:
+        build:
+            context: .
+            dockerfile: Dockerfile.nginx
+        restart: always
+        volumes:
+            - launcher:/volume
+            - assets:/assets
+        ports:
+            - 17549:80
+        depends_on:
+            - gravitlauncher
+volumes:
+    launcher:
+    assets:
+    postgres-database:
