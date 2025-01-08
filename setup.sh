@@ -8,7 +8,6 @@ SIMPLECABINET_REMOTE=localhost:17549
 SIMPLECABINET_PROTOCOL=http
 
 SIMPLECABINET_REMOTE_URL=$SIMPLECABINET_PROTOCOL:\\/\\/$SIMPLECABINET_REMOTE
-YARN_COMMAND=yarn
 
 echo -e "\033[32mPhase 0: \033[33mDownload repositories\033[m";
 
@@ -36,7 +35,6 @@ cd backend-src && ./gradlew assemble && cd ..
 cd module-src && ./gradlew build && cd ..
 cp frontend-src/.env.example frontend-src/.env
 sed -i "s/URL=http:\/\/localhost:8080\//URL=$SIMPLECABINET_REMOTE_URL\/api\//" frontend-src/.env
-cd frontend-src && $YARN_COMMAND install --ignore-engines && quasar build && cd ..
 mkdir backend-configuration
 cp backend-src/src/main/resources/application.properties backend-configuration/application.properties
 cp -r backend-src/src/main/resources/templates backend-configuration
