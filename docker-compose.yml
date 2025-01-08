@@ -27,7 +27,7 @@ services:
             POSTGRES_USER: "simplecabinet"
             POSTGRES_PASSWORD: "yourpassword"
         volumes:
-            - postgres-database:/docker-entrypoint-initdb.d
+            - postgres-database:/var/lib/postgresql/data
     nginx:
         build:
             context: .
