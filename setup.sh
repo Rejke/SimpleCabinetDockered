@@ -53,9 +53,9 @@ echo -e "\033[32mPhase 2: \033[33mBuild Docker containers\033[m";
 sed -i "s/LAUNCHSERVER_ADDRESS_PLACEHOLDER/$SIMPLECABINET_REMOTE\/launcher/" docker-compose.yml || true
 docker compose up -d --build
 
-echo -e "\033[32mPhase 3: \033[33mSleep 10 seconds\033[m";
+echo -e "\033[32mPhase 3: \033[33mSleep 20 seconds\033[m";
 
-sleep 10
+sleep 20
 
 echo -e "\033[32mPhase 3.1: \033[33mRun basic initialization\033[m";
 
