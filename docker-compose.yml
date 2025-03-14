@@ -20,8 +20,11 @@ services:
         tty: true
         volumes:
         - assets:/app/assets
+        depends_on:
+            - postgres
     postgres:
         image: postgres:16
+        restart: always
         environment:
             POSTGRES_DB: "simplecabinet"
             POSTGRES_USER: "simplecabinet"
