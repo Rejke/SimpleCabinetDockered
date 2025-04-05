@@ -31,8 +31,8 @@ fi
 
 echo -e "\033[32mPhase 1: \033[33mBuild SimpleCabinet\033[m";
 
-cd backend-src && ./gradlew assemble && cd ..
-cd module-src && ./gradlew build && cd ..
+docker run --rm -v "$(pwd)/backend-src:/app" -w /app -u $(id -u):$(id -g) eclipse-temurin:21-noble ./gradlew assemble
+docker run --rm -v "$(pwd)/module-src:/app" -w /app -u $(id -u):$(id -g) eclipse-temurin:21-noble ./gradlew build
 cp frontend-src/.env.example frontend-src/.env
 sed -i "s/URL=http:\/\/localhost:8080\//URL=$SIMPLECABINET_REMOTE_URL\/api\//" frontend-src/.env
 mkdir backend-configuration
