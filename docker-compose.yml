@@ -9,8 +9,8 @@ services:
         volumes:
         - launcher:/app/data
         environment:
-            ADDRESS: "LAUNCHSERVER_ADDRESS_PLACEHOLDER"
-            PROJECTNAME: "GravitLauncher"
+            ADDRESS:
+            PROJECTNAME:
     simplecabinet:
         build:
             context: .
@@ -26,9 +26,9 @@ services:
         image: postgres:16
         restart: always
         environment:
-            POSTGRES_DB: "simplecabinet"
-            POSTGRES_USER: "simplecabinet"
-            POSTGRES_PASSWORD: "yourpassword"
+            POSTGRES_DB:
+            POSTGRES_USER:
+            POSTGRES_PASSWORD:
         volumes:
             - postgres-database:/var/lib/postgresql/data
     nginx:
